@@ -2,7 +2,8 @@ from django.urls import path
 from online_magazine_app import views
 
 urlpatterns = [
-    path('', views.hello_everyone, name='hello_everyone'),
+    path('home/', views.home, name='home'),
     path('register/', views.register, name='register'),
+    path('user_profile/', views.user_profile, name='user_profile'),
 ]
 
