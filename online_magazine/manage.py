@@ -5,6 +5,7 @@ import sys
 
 
 def main():
+    print("Debug: The manage.py file is being executed.")
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'online_magazine.settings')
     try:
