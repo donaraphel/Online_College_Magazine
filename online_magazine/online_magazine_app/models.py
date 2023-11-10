@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 
 # Model for Article Categories
 class Category(models.Model):
@@ -32,10 +33,18 @@ class UserDetails(models.Model):
     user_id = models.CharField(max_length=50, unique=True)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)  # Store hashed password
-    bio = models.TextField(blank=True)
+    bio = models.TextField(max_length=250)
 
     def __str__(self):
         return self.username
+    
+    def set_password(self, raw_password):
+        # Use Django's make_password to hash the password
+        self.password = make_password(raw_password)
+
+    def check_password(self, raw_password):
+        if(self.password == raw_password):
+            return True
 
 # Model for User Likes
 class UserLike(models.Model):
