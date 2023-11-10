@@ -36,3 +36,10 @@ class CustomAuthenticationForm(forms.Form):
                 raise forms.ValidationError('Invalid user_id or password.')
 
         return None    
+    
+
+class PublishArticleForm(forms.Form):
+    title = forms.CharField(max_length=100)
+    content = forms.CharField(widget=forms.Textarea)
+    date = forms.DateField()
+    author_id = forms.CharField(max_length=50)    

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from online_magazine_app.models import UserDetails
-from .forms import CustomUserCreationForm,CustomAuthenticationForm
+from online_magazine_app.models import UserDetails, Article
+from .forms import CustomUserCreationForm,CustomAuthenticationForm, PublishArticleForm
 
 def home(request):
     return render(request, 'templates/home.html',{})
@@ -59,3 +59,25 @@ def login(request):
         else:
             form = CustomAuthenticationForm()    
     return render(request, 'templates/login.html',{'form': form})
+
+def publish(request, user_id):
+    form = PublishArticleForm(request.POST)
+    if form.is_valid():
+            # Get the form data
+            title = form.cleaned_data['title']
+            content = form.cleaned_data['content']
+            date = form.cleaned_data['date']
+            author_id = form.cleaned_data['author_id']
+            author = UserDetails.objects.get(user_id=author_id)
+
+            # Save the data to the database
+            Article.objects.create(
+                title=title,
+                content=content,
+                publication_date=date,
+                author_id=author.user_id
+            )
+
+            # Redirect to a success page or do something else
+            return redirect('user_profile')
+    return render(request, 'templates/publish.html', {'user_id': user_id})

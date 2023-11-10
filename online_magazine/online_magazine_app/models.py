@@ -8,29 +8,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-# Model for Articles
-class Article(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    publication_date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    categories = models.ManyToManyField(Category)
-    likes = models.ManyToManyField(User, related_name='liked_articles', blank=True)
-
-    def __str__(self):
-        return self.title
-
-# Model for Comments on Articles
-class Comment(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
+    
 class UserDetails(models.Model):
     username = models.CharField(max_length=100, unique=True)
-    user_id = models.CharField(max_length=50, unique=True)
+    user_id = models.CharField(max_length=50, primary_key=True, unique=True)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)  # Store hashed password
     bio = models.TextField(max_length=250)
@@ -45,6 +26,26 @@ class UserDetails(models.Model):
     def check_password(self, raw_password):
         if(self.password == raw_password):
             return True
+
+# Model for Articles
+class Article(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    publication_date = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(UserDetails, on_delete=models.CASCADE)
+    categories = models.ManyToManyField(Category)
+    likes = models.ManyToManyField(User, related_name='liked_articles', blank=True)
+
+    def __str__(self):
+        return self.title
+
+# Model for Comments on Articles
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
 
 # Model for User Likes
 class UserLike(models.Model):

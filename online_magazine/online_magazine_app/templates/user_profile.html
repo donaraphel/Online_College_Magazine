@@ -17,6 +17,25 @@
             flex-direction: row;
         }
 
+        .article-actions {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+
+        .article-actions a {
+            text-decoration: none;
+            color: #333;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .article-actions a:hover {
+            background-color: #ddd;
+        }
+
         .profile-section {
             background-color: #fff;
             padding: 20px;
@@ -54,6 +73,11 @@
 
     <div style="width: 100%;text-align: center;">
         <h2>Welcome {{user_details.username}}</h2>
+    </div>
+    <div class="article-actions">
+        <a href="{% url 'publish' user_id=user_details.user_id %}">Publish Article</a>
+        <a href="{% url 'search' title=article.title %}">Search Article</a>
+        <a href="">My Articles</a>
     </div>
 
     <script>
