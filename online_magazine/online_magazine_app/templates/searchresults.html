@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .result-item {
+            margin-bottom: 10px;
+        }
+
+        /* Add your additional styling here */
+    </style>
+</head>
+
+<body>
+    <h2>Search Results for "{{ query }}"</h2>
+
+    {% if results %}
+    <ul>
+        {% for result in results %}
+        <li class="result-item">{{ result.title }} by {{ result.author }}</li>
+        <!-- Add more details or customize based on your result model -->
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+
+    <!-- Add your additional HTML content here -->
+
+</body>
+
+</html>

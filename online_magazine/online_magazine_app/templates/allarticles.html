@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Search and Top 10 Articles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .search-section {
+            margin-bottom: 20px;
+        }
+
+        .top-articles {
+            padding-top: 20px;
+        }
+
+        /* Add your additional styling here */
+    </style>
+</head>
+
+<body>
+    <div class="search-section">
+        <h2>Search Articles</h2>
+        <form action="{your_search_endpoint}" method="GET">
+            <label for="searchInput">Search by Title or Author:</label>
+            <input type="text" id="searchInput" name="searchInput" placeholder="Enter keywords...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="top-articles">
+        <h2>Top 10 Articles</h2>
+        <!-- Display top 10 articles from the database -->
+        <ol>
+            <li>Article 1</li>
+            <li>Article 2</li>
+            <!-- Repeat for the remaining articles -->
+        </ol>
+    </div>
+
+    <!-- Add your additional HTML content here -->
+
+</body>
+
+</html>

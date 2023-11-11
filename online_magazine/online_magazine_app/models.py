@@ -49,5 +49,5 @@ class Comment(models.Model):
 
 # Model for User Likes
 class UserLike(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserDetails, on_delete=models.CASCADE)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)

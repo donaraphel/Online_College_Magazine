@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from .models import UserDetails
-#check whether custom form is really required or not????????????????
+from .models import UserDetails,UserLike
 
 class CustomUserCreationForm(forms.ModelForm):
     # Add custom fields to the form
@@ -42,4 +41,9 @@ class PublishArticleForm(forms.Form):
     title = forms.CharField(max_length=100)
     content = forms.CharField(widget=forms.Textarea)
     date = forms.DateField()
-    author_id = forms.CharField(max_length=50)    
+    author_id = forms.CharField(max_length=50)  
+
+class UserLikeForm(forms.ModelForm):
+    class Meta:
+        model = UserLike
+        fields = '__all__'     
